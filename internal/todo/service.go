@@ -20,3 +20,38 @@ type TodoService interface {
 func NewService(repo TodoRepository) *Service {
 	return &Service{repo: repo}
 }
+
+// CreateTodo creates a new TODO item for a specific user.
+func (s *Service) CreateTodo(userID, title, description string) (*Todo, error) {
+	return nil, nil
+}
+
+// GetTodosByUserID returns all TODO items for a specific user.
+func (s *Service) GetTodosByID(id, userID string) (*Todo, error) {
+	return nil, nil
+}
+
+// GetTodosByUserID returns all TODO items for a specific user.
+func (s *Service) GetTodosByUserID(userID string) ([]Todo, error) {
+	return nil, nil
+}
+
+// UpdateTodo updates an existing TODO item for a specific user.
+func (s *Service) UpdateTodo(id, userID, title, description string) (*Todo, error) {
+	return nil, nil
+}
+
+// DeleteTodo deletes a TODO item for a specific user.
+func (s *Service) DeleteTodo(id, userID string) error {
+	return nil
+}
+
+// AddAttachment adds an attachment to a TODO item for a specific user.
+func (s *Service) AddAttachment(todoID, userID, fileName, fileType, filePath string) (*Attachment, error) {
+	return nil, nil
+}
+
+// DeleteAttachment removes an attachment from a TODO item for a specific user.
+func (s *Service) DeleteAttachment(todoID, userID, attachmentID string) (*Todo, error) {
+	return nil, nil
+}
