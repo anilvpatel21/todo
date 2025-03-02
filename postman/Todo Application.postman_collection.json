@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "1977eb6e-d14f-4a25-9edb-c785020aeaa0",
+		"name": "Todo Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42751112"
+	},
+	"item": [
+		{
+			"name": "{{todoId}}",
+			"item": [
+				{
+					"name": "{{attachmentId}}",
+					"item": [
+						{
+							"name": "Delete attachment",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/todos/:todoID/attachments/:attachmentID",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"todos",
+										":todoID",
+										"attachments",
+										":attachmentID"
+									],
+									"variable": [
+										{
+											"key": "todoID",
+											"value": "{{todoID}}"
+										},
+										{
+											"key": "attachmentID",
+											"value": "{{attachmentID}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Todo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/todos/:todoID",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"todos",
+								":todoID"
+							],
+							"variable": [
+								{
+									"key": "todoID",
+									"value": "{{todoID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Todo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Grocery List\",\n    \"description\": \"have a list of food items\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/todos/:todoID",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"todos",
+								":todoID"
+							],
+							"variable": [
+								{
+									"key": "todoID",
+									"value": "{{todoID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Todo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/todos/:todoID",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"todos",
+								":todoID"
+							],
+							"variable": [
+								{
+									"key": "todoID",
+									"value": "{{todoID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add attachment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/anillkumarvinodbhaipatel/Downloads/Anilkumar_Vinodbhai_Patel_8yrs_Golang.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/todos/:todoID/attachments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"todos",
+								":todoID",
+								"attachments"
+							],
+							"variable": [
+								{
+									"key": "todoID",
+									"value": "{{todoID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List of todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/todos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"Grocery\",\n    \"description\": \"Banana, Grapes etc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/todos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "default"
+		},
+		{
+			"key": "todoID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "attachmentID",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
