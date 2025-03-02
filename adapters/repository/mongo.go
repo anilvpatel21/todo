@@ -3,12 +3,22 @@ package repository
 import (
 	"context"
 	"errors"
+	"fmt"
+	"log"
 
 	"example.com/todo-app/internal/todo"
+	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+type MongoDBConfig struct {
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+	Host     string `yaml:"host"`
+	Database string `yaml:"database"`
+}
 
 type MongoTodoRepository struct {
 	client     *mongo.Client
@@ -17,7 +27,22 @@ type MongoTodoRepository struct {
 
 func Connect() (*mongo.Client, error) {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI("mongodb+srv://anilpatelyt:<db_password>@cluster0.0u9qr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").SetServerAPIOptions(serverAPI)
+
+	var mongodbConfig MongoDBConfig
+	if err := viper.UnmarshalKey("mongodb", &mongodbConfig); err != nil {
+		log.Fatalf("Unable to decode into struct, %v", err)
+	}
+
+	// Use the MongoDB config (decrypted password for example)
+	mongoURI := fmt.Sprintf(
+		"mongodb+srv://%s:%s@%s/%s",
+		mongodbConfig.Username,
+		mongodbConfig.Password, // This could be decrypted if encrypted
+		mongodbConfig.Host,
+		mongodbConfig.Database,
+	)
+
+	opts := options.Client().ApplyURI(mongoURI + "/?retryWrites=true&w=majority&appName=Cluster0").SetServerAPIOptions(serverAPI)
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(context.TODO(), opts)
 	if err != nil {

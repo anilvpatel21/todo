@@ -1,0 +1,5 @@
+mongodb:
+  username: "anilpatelyt"
+  password: ""
+  host: "cluster0.0u9qr.mongodb.net"
+  database: "todoAppDB"
